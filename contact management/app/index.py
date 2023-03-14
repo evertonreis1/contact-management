@@ -13,42 +13,97 @@ class ContactList:
 
     def add_contact(self, primeiro_nome, ultimo_nome, numero_telefone):
         """
-        Esta função adiciona um novo contato a lista de contatos.
+        Esta função adiciona um novo contato à lista de contatos.
         A lista é ordenada por sobrenome e depois por nome.
         """
-        novo_contato = Contact(primeiro_nome, ultimo_nome, numero_telefone)
+        new_contact = Contact(primeiro_nome, ultimo_nome, numero_telefone)
         if self.head is None:  # se a lista está vazia
-            self.head = novo_contato
-            self.tail = novo_contato
+            self.head = new_contact
+            self.tail = new_contact
         else:
             current_node = self.head
             while current_node is not None and (current_node.ultimo_nome + current_node.primeiro_nome) < (ultimo_nome + primeiro_nome):
                 # percorre a lista até encontrar o local onde o novo contato deve ser adicionado
                 current_node = current_node.next
             if current_node is None:  # adiciona o novo contato ao final da lista
-                self.tail.next = novo_contato
-                novo_contato.prev = self.tail
-                self.tail = novo_contato
+                self.tail.next = new_contact
+                new_contact.prev = self.tail
+                self.tail = new_contact
             elif current_node.prev is None:  # adiciona o novo contato ao início da lista
-                novo_contato.next = self.head
-                self.head.prev = novo_contato
-                self.head = novo_contato
+                new_contact.next = self.head
+                self.head.prev = new_contact
+                self.head = new_contact
             else:  # adiciona o novo contato no meio da lista
-                novo_contato.prev = current_node.prev
-                current_node.prev.next = novo_contato
-                novo_contato.next = current_node
-                current_node.prev = novo_contato
+                new_contact.prev = current_node.prev
+                current_node.prev.next = new_contact
+                new_contact.next = current_node
+                current_node.prev = new_contact
+
+    def find_contact_by_name(self, name):
+        """
+        Esta função utiliza busca binária para encontrar um contato pelo nome completo.
+        """
+        first = 0
+        last = self.get_length() - 1
+        while first <= last:
+            middle = (first + last) // 2
+            current_node = self.get_node_at_index(middle)
+            full_name = current_node.ultimo_nome + current_node.primeiro_nome
+            if full_name == name:
+                return current_node
+            elif full_name < name:
+                first = middle + 1
+            else:
+                last = middle - 1
+        return None
+
+    def get_length(self):
+        """
+        Esta função retorna o tamanho da lista de contatos.
+        """
+        current_node = self.head
+        length = 0
+        while current_node is not None:
+            length += 1
+            current_node = current_node.next
+        return length
+
+    def get_node_at_index(self,index):
+        """
+        Esta função retorna o contato no índice dado.
+        """
+        current_node = self.head
+        current_index = 0
+        while current_node is not None and current_index < index:
+            current_index += 1
+            current_node = current_node.next
+        return current_node
 
 
-minha_lista_de_contatos = ContactList()
 
 
-minha_lista_de_contatos.add_contact("Julia", "Clara", "829234-5678")
-minha_lista_de_contatos.add_contact("Everton", "Reis", "829345-6789")
-minha_lista_de_contatos.add_contact("Pedro", "Raul", "829456-7890")
-minha_lista_de_contatos.add_contact("Ana", "Banana", "829567-8901")
+contact_list = ContactList()
 
-contato_atual = minha_lista_de_contatos.head
-while contato_atual is not None:
-    print(f"{contato_atual.primeiro_nome} {contato_atual.ultimo_nome}: {contato_atual.numero_telefone}")
-    contato_atual = contato_atual.next
+# Adicionando contatos
+contact_list.add_contact("Reis", "Everton", "82996246708")
+contact_list.add_contact("Silva", "Maria", "8288834388")
+contact_list.add_contact("Souza", "Pedro", "8287437777")
+
+# Obtendo o tamanho da lista de contatos
+length = contact_list.get_length()
+print("Tamanho da lista de contatos:", length)
+
+# Procurando um contato pelo nome completo
+contact = contact_list.find_contact_by_name("EvertonReis")
+if contact is not None:
+    print("Telefone de Everton Reis:", contact.numero_telefone)
+else:
+    print("Contato não encontrado.")
+
+# Obtendo um contato por índice
+index = 1
+contact = contact_list.get_node_at_index(index)
+if contact is not None:
+    print("Telefone do contato no índice", index, ":", contact.numero_telefone)
+else:
+    print("Contato não encontrado.")
