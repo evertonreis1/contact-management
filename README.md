@@ -4,11 +4,13 @@ Este código é uma implementação de uma lista encadeada duplamente ligada que
 
 A classe ContactList representa a lista de contatos e possui métodos para adicionar contatos à lista, buscar contatos por nome e obter o tamanho da lista. A função add_contact adiciona um novo contato à lista e ordena a lista por sobrenome e, em seguida, por nome. A função find_contact_by_name utiliza a busca binária para encontrar um contato pelo nome completo. A função get_length retorna o tamanho da lista de contatos e a função get_node_at_index retorna o contato no índice dado.
 
-Nessa instância, é criada uma lista de contatos vazia, em seguida, três contatos são adicionados à lista usando o método add_contact. Em seguida, são realizadas duas buscas na lista de contatos: a primeira usando o método find_contact_by_name para encontrar o telefone de "Everton Reis" e a segunda usando o método get_node_at_index para encontrar o contato no índice 1. O resultado das buscas é impresso na tela. O resultado final é:
+Implementado também um menu para gerenciar uma lista de contatos. O usuário pode escolher entre adicionar um novo contato, obter o tamanho atual da lista de contatos, procurar um contato pelo nome e sair do programa. A lista de contatos é armazenada em uma estrutura de dados de lista duplamente encadeada ordenada por sobrenome e depois por nome. O código utiliza as classes Contact e ContactList para representar cada contato e a lista de contatos, respectivamente, e as funções add_contact(), find_contact_by_name(), get_length() e get_node_at_index() para adicionar um novo contato, procurar um contato pelo nome, obter o tamanho da lista e obter um nó em um índice específico da lista:
 ```
-Tamanho da lista de contatos: 3
-Contato não encontrado.
-Telefone do contato no índice 1 : 8288834388
+Contact List Menu:
+1. Add a contact
+2. Get the length of the contact list
+3. Find a contact by name
+4. Exit
 ```
 
 
@@ -21,7 +23,7 @@ The project is encapsulated in docker containers. To run locally, one just needs
 
 and build the images using:
 
-`$ docker build -t evertonreis1/contact-management:v2.0 .`
+`$ docker build -t evertonreis1/contact-management:v3.0 .`
 
 having created the images, run the servers using:
 
