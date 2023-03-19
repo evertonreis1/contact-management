@@ -92,7 +92,11 @@ def main():
         print("2. Get the length of the contact list")
         print("3. Find a contact by name")
         print("4. Exit")
-        choice = input("Enter your choice: ")
+        try:
+            choice = input("Enter your choice: ")
+        except EOFError:
+            print("End of input reached, exiting...")
+            break
         if choice == "1":
             first_name = input("Enter first name: ")
             last_name = input("Enter last name: ")
