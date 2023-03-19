@@ -27,7 +27,7 @@ and build the images using:
 
 having created the images, run the servers using:
 
-`$ docker run -it evertonreis1/contact-management`
+`$ docker run -it evertonreis1/contact-management:v5.0`
 
 https://hub.docker.com/repository/docker/evertonreis1/contact-management/general
 
