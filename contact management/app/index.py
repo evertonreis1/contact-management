@@ -83,6 +83,7 @@ class ContactList:
 
 
 #
+import os #estava dando erro no modo interativo "EOFError: EOF when reading a line", entao foi necessário usando os
 
 def main():
     contact_list = ContactList()
@@ -92,9 +93,19 @@ def main():
         print("2. Get the length of the contact list")
         print("3. Find a contact by name")
         print("4. Exit")
-        try:
-            choice = input("Enter your choice: ")
-        except EOFError:
+
+
+         # Se estiver no modo interativo, continue pedindo a entrada do usuário até que seja fornecida
+        while True:
+            if os.isatty(0):  # Verifica se a entrada padrão é um terminal
+                choice = input("Enter your choice: ")
+                if choice.strip():  # Verifica se a entrada não está vazia
+                    break
+            else:
+                choice = input()
+                break
+
+        
             print("End of input reached, exiting...")
             break
         if choice == "1":
