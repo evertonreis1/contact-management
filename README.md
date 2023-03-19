@@ -23,7 +23,7 @@ The project is encapsulated in docker containers. To run locally, one just needs
 
 and build the images using:
 
-`$ docker build -t evertonreis1/contact-management:v3.0 .`
+`$ docker build -t evertonreis1/contact-management:v4.0 .`
 
 having created the images, run the servers using:
 
