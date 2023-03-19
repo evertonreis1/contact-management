@@ -82,28 +82,40 @@ class ContactList:
 
 
 
-contact_list = ContactList()
+#
 
-# Adicionando contatos
-contact_list.add_contact("Reis", "Everton", "82996246708")
-contact_list.add_contact("Silva", "Maria", "8288834388")
-contact_list.add_contact("Souza", "Pedro", "8287437777")
+def main():
+    contact_list = ContactList()
+    while True:
+        print("Contact List Menu:")
+        print("1. Add a contact")
+        print("2. Get the length of the contact list")
+        print("3. Find a contact by name")
+        print("4. Exit")
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            first_name = input("Enter first name: ")
+            last_name = input("Enter last name: ")
+            phone_number = input("Enter phone number: ")
+            contact_list.add_contact(first_name, last_name, phone_number)
+        elif choice == "2":
+            print("The contact list has", contact_list.get_length(), "contacts")
+        elif choice == "3":
+            name = input("Enter full name: ")
+            contact = contact_list.find_contact_by_name(name)
+            if contact is None:
+                print("Contact not found")
+            else:
+                print(contact.primeiro_nome, contact.ultimo_nome, contact.numero_telefone)
+        elif choice == "4":
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice, please try again")
 
-# Obtendo o tamanho da lista de contatos
-length = contact_list.get_length()
-print("Tamanho da lista de contatos:", length)
+if __name__ == "__main__":
+    main()
 
-# Procurando um contato pelo nome completo
-contact = contact_list.find_contact_by_name("EvertonReis")
-if contact is not None:
-    print("Telefone de Everton Reis:", contact.numero_telefone)
-else:
-    print("Contato não encontrado.")
 
-# Obtendo um contato por índice
-index = 1
-contact = contact_list.get_node_at_index(index)
-if contact is not None:
-    print("Telefone do contato no índice", index, ":", contact.numero_telefone)
-else:
-    print("Contato não encontrado.")
+
+
