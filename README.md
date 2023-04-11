@@ -10,7 +10,9 @@ Contact List Menu:
 1. Add a contact
 2. Get the length of the contact list
 3. Find a contact by name
-4. Exit
+4. List all contacts
+5. Remove a contact
+6. Exit
 ```
 
 
