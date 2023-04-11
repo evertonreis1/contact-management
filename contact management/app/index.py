@@ -94,7 +94,6 @@ class ContactList:
 
 
 #
-import os #estava dando erro no modo interativo "EOFError: EOF when reading a line", entao foi necessário usando os
 
 def main():
     contact_list = ContactList()
